@@ -1,49 +1,71 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-p {
-  text-align: center;
-  font-size: 4rem;
-  margin-top: 0px;
-}
-body {
-  margin: 10;
-  padding: 0;
-}
-#timer {
-  font-size: 3rem;
-}
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    h2 {
+      text-align: center;
+      font-size: 4rem;
+      margin-top: 0px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 4rem;
+      margin-top: 0px;
+    }
+
+    body {
+      margin: 10;
+      padding: 0;
+    }
+
+    #timer {
+      font-size: 3rem;
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
-  <p>
-    Tempo que falta para eu chegar em Fortaleza!!
-  </p>
-  <p id="timer">
-      <span id="timer-days"></span>
-      <span id="timer-hours"></span>
-      <span id="timer-mins"></span>
-      <span id="timer-secs"></span>
-  </p>
-</div>
-<script src="./js/countdown_dublin.js"></script>
-
-<div class="container">
-  <p>
-    Tempo que falta para eu sair de Dublin!!
-  </p>
-  <p id="timer">
-      <span id="timer2-days"></span>
-      <span id="timer2-hours"></span>
-      <span id="timer2-mins"></span>
-      <span id="timer2-secs"></span>
-  </p>
-</div>
-<script src="./js/countdown_fortaleza.js"></script>
-
+  <h2>Chegando em Fortaleza</h2>
+  <p id="fortaleza"></p>
+  <script>
+    var countDownDate = new Date("Jun 9, 2019 17:35:00").getTime();
+    var x = setInterval(function () {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("fortaleza").innerHTML = days + "d " + hours + "h " +
+        minutes + "m " + seconds + "s ";
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("fortaleza").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+  <h2>Saindo de Dublin --> Fortaleza</h2>
+  <p id="dublin"></p>
+  <script>
+    var countDownDate2 = new Date("Jun 9, 2019 06:00:00").getTime();
+    var y = setInterval(function () {
+      var now = new Date().getTime();
+      var dublin = countDownDate2 - now;
+      var days = Math.floor(dublin / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((dublin % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((dublin % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((dublin % (1000 * 60)) / 1000);
+      document.getElementById("dublin").innerHTML = days + "d " + hours + "h " +
+        minutes + "m " + seconds + "s ";
+      if (dublin < 0) {
+        clearInterval(y);
+        document.getElementById("dublin").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
 </body>
-</html>
 
+</html>
